@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 
 module.exports = {
-  publicPath: '/ella-ecommerce/',
+  publicPath: '/ella-e-commerce/',
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({

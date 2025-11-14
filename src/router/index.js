@@ -1,26 +1,62 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-
+import { createRouter, createWebHistory } from "vue-router";
+import HomePage from "@/views/HomePage.vue";
+import ProductsCategories from "@/views/ProductsCategories.vue";
+import SingleProduct from "@/views/SingleProduct.vue";
+import CartPage from "@/views/CartPage.vue";
+import CheckoutPage from "@/views/Checkout.vue";
 const routes = [
   {
-    path: "/",
     name: "home",
-    component: HomeView,
+    path: "/",
+    component: HomePage,
+    meta: {
+      title: "Ellamart",
+    },
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    name: "category",
+    path: "/products/:category/:title",
+    component: ProductsCategories,
+    meta: {
+      title: "Category",
+    },
+  },
+  {
+    name: "single_product",
+    path: "/products/single-product/:productId",
+    component: SingleProduct,
+    meta: {
+      title: "Single Product",
+    },
+  },
+  {
+    name: "cart-page",
+    path: "/cart-page",
+    component: CartPage,
+    meta: {
+      title: "Cart Page",
+    },
+  },
+  {
+    name: "checkout_page",
+    path: "/checkout",
+    component: CheckoutPage,
+    meta: {
+      title: "Checkout Page",
+    },
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 export default router;

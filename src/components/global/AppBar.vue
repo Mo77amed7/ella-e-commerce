@@ -170,7 +170,7 @@
         <div class="col-2"></div>
         <div class="col-2">
           <div
-            class="handlng d-flex justify-content-end justify-content-between align-items-center mt-4"
+            class="handling d-flex justify-content-end justify-content-between align-items-center mt-4"
           >
             <div class="helpers d-flex align-items-center position-relative">
               <svg

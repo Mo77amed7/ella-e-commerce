@@ -1,6 +1,5 @@
 <template>
   <div
-    @closeNav="closeNav"
     class="app-bar py-3"
     style="background-color: #0a1b69; position: relative; z-index: 3000"
   >
@@ -99,19 +98,14 @@
               class="cart d-flex flex-column align-items-center position-relative"
             >
               <button
-                class="navbar-toggler"
+                style="background: transparent; border: none; outline: none"
                 type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar"
-                aria-controls="offcanvasDarkNavbar"
-                aria-label="Toggle navigation"
-                :disabled="$route.name === 'cart-page'"
+                @click="openDrawer"
               >
                 <svg
                   style="width: 30px; margin-bottom: 4px; fill: orange"
                   viewBox="0 0 1024 1024"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="navbar-toggler-icon"
                 >
                   <path
                     class="path1"
@@ -317,6 +311,7 @@
 }
 </style>
 <script>
+import { Offcanvas } from "bootstrap";
 import { productsModule } from "@/stores/products";
 import { cartStore } from "@/stores/cart";
 import { mapState } from "pinia";
@@ -416,8 +411,10 @@ export default {
     ...mapState(cartStore, ["cartItems"]),
   },
   methods: {
-    closeNav() {
-      document.querySelector(".button-toggler").click();
+    openDrawer() {
+      const el = document.getElementById("offcanvasDarkNavbar");
+      const drawer = new Offcanvas(el);
+      drawer.show();
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="nav-drawer">
-    <nav
+    <div
       class="navbar navbar-light bg-light fixed-top py-0"
       id="navbar"
       style="z-index: 9999"
@@ -187,7 +187,7 @@
           </div>
         </div>
       </div>
-    </nav>
+    </div>
   </div>
 </template>
 
@@ -213,6 +213,7 @@ export default {
     closeOffcanvas() {
       document.querySelector("#offcanvasDarkNavbar .btn-close").click();
     },
+
     toCheckout() {
       this.setToLocalStorage();
       this.$router.push({ name: "checkout_page" });
